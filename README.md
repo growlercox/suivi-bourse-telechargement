@@ -1,68 +1,47 @@
-# Suivi Bourse
+# Suivi Bourse (version bêta)
 
-Logiciel Windows **100 % local** pour suivre toutes tes enveloppes d'investissement (PEA, CTO, assurance-vie, PER…) sans fichier Excel. Tes données restent sur ton ordinateur.
+Logiciel **Windows gratuit** pour suivre toutes tes enveloppes d'investissement (PEA, CTO, assurance-vie, PER…) au même endroit, sans fichier Excel. **Tes données restent sur ton ordinateur.**
+
+## Télécharger
+
+➡️ **[Dernière version](../../releases/latest)** → section *Assets* :
+
+- **`SuiviBourse-Setup.exe`** (recommandé) : double-clique, suis l'assistant. Il propose de créer une **icône sur le Bureau** et ajoute le logiciel au menu Démarrer. Aucun droit administrateur n'est nécessaire. Pour mettre à jour, **ferme d'abord Suivi Bourse**, puis lance le nouvel installateur : tes données sont conservées.
+- **`SuiviBourse.exe`** : version portable, sans installation. Double-clique dessus pour l'utiliser (pour une icône sur le Bureau : clic droit › *Envoyer vers* › *Bureau (créer un raccourci)*).
+
+> **Avertissement Windows** : le programme n'est pas signé numériquement. Si Windows affiche « Windows a protégé votre ordinateur », clique sur **Informations complémentaires**, puis **Exécuter quand même**.
+
+### Vérifier ton téléchargement
+
+Ne télécharge Suivi Bourse **que depuis ce dépôt**. Pour t'assurer que ton fichier est bien l'original :
+
+1. Sur la page de la release, repère l'empreinte **sha256** affichée à droite du fichier téléchargé (elle commence par `sha256:`).
+2. Sur ton ordinateur, ouvre **PowerShell** dans le dossier du fichier téléchargé et tape : `Get-FileHash .\SuiviBourse-Setup.exe`
+3. Compare : les deux séries de lettres et de chiffres doivent être **identiques**. Sinon, supprime le fichier et retélécharge-le.
 
 ## Ce qu'il fait
 
-- **Enveloppes** : crée autant d'enveloppes que tu veux (PEA, CTO, AV, PER, crypto…).
-- **Actifs et opérations** : achats, ventes, dividendes, versements, retraits, frais.
-- **Cours automatiques** via Yahoo Finance (actualisation au lancement, une fois par jour, ou à la demande). Pour un actif sans cours Yahoo (fonds d'assurance-vie, fonds euros…), tu saisis le cours à la main.
-- **Suivi** par enveloppe **et** global : valeur, net investi, gain, plus-value latente, plus-values réalisées, dividendes, **TRI annualisé** (équivalent de `XIRR` d'Excel), courbe d'évolution.
-- **PRU** (prix de revient unitaire) calculé en méthode du coût moyen pondéré, frais inclus.
-- **Actifs en devises** (USD, GBP…) : conversion en euros avec les taux Yahoo.
-- **Import CSV** de l'historique de ton courtier (les colonnes sont devinées, tu les corriges si besoin), saisie manuelle pour les autres.
-- **Mode clair / sombre** (menu Affichage ou bouton « Thème »), mémorisé d'une fois sur l'autre.
-- **Export CSV** des opérations et **sauvegarde / restauration** de la base.
+- Enveloppes illimitées, avec une vue globale de tout ton patrimoine boursier.
+- Achats, ventes, dividendes, versements, retraits, frais.
+- Colonnes au choix dans l'onglet Positions : variation depuis la veille, objectif de cours (saisi à la main) et écart à l'objectif, performance annualisée sur 5 ans.
+- Actualisation des cours au démarrage, et en option automatique toutes les 30 min, 1 h ou 2 h (menu Outils).
+- Cours automatiques via Yahoo Finance (saisie manuelle possible pour les fonds sans cours).
+- Valeur, net investi, gain, plus-value latente, plus-values réalisées, **TRI annualisé**, courbe d'évolution.
+- Import CSV de l'historique de ton courtier, export, sauvegarde.
+- Mode clair et mode sombre.
 
-## Installation (utilisateur)
+## À savoir (bêta)
 
-1. Télécharge `SuiviBourse-Setup.exe` (installateur, icône Bureau en option) ou `SuiviBourse.exe` (version portable, sans installation) depuis la page de téléchargement (dépôt public, section *Releases*).
-2. Double-clique dessus. Rien d'autre à installer.
+- Version de test : des erreurs sont possibles. **Fais des sauvegardes** (menu *Fichier › Sauvegarder la base*).
+- Les cours viennent de Yahoo Finance et sont donnés à titre indicatif.
+- Au démarrage, le logiciel vérifie sur GitHub si une nouvelle version existe (simple lecture, aucune donnée personnelle envoyée). Désactivable dans Aide › Vérifier automatiquement au démarrage.
+- Aucun calcul fiscal. Ce logiciel ne constitue pas un conseil en investissement.
+- Tes données sont dans `%APPDATA%\SuiviBourse` (menu *Outils › Ouvrir le dossier des données*). La désinstallation **ne les supprime pas**.
 
-> **Avertissement Windows** : comme le programme n'est pas signé numériquement, Windows peut afficher « Windows a protégé votre ordinateur ». Clique sur **Informations complémentaires → Exécuter quand même**.
+## Un problème, une idée ?
 
-Tes données sont dans `%APPDATA%\SuiviBourse\suivi_bourse.db` (menu **Outils › Ouvrir le dossier des données**).
-
-## Premiers pas
-
-1. **+ Nouvelle enveloppe** (en bas à gauche) : donne un nom et un type.
-   - *Case décochée* (conseillé) : tu saisis tes achats/ventes, le TRI part de ces flux.
-   - *Case cochée* : tu saisis aussi les versements/retraits d'espèces ; utile pour une assurance-vie ou un PER où tu veux suivre l'argent versé.
-2. **+ Opération** : choisis le type, l'actif (ou **Nouvel actif…** : recherche Yahoo par nom, ISIN ou symbole), la quantité, le prix, les frais.
-   - Tickers Yahoo : `AIR.PA` (Paris), `.AS` (Amsterdam), `.DE` (Xetra), `.L` (Londres), `.MI` (Milan)…
-3. **Fichier › Importer un historique CSV** si ton courtier propose un export.
-
-### Cas particuliers
-
-- **Fonds euros / fonds sans cours Yahoo** : crée l'actif sans ticker, saisis une quantité (ex. 8 000 parts à 1 €), puis **Positions › Saisir un cours à la main** quand tu veux mettre à jour la valeur.
-- **Actif valorisé « * »** dans Positions : aucun cours n'est connu, la ligne est comptée au prix de revient.
-- **TRI « n.s. »** : moins de 30 jours de recul, annualiser n'aurait pas de sens.
-
-## Limites à connaître
-
-- Les cours viennent de Yahoo Finance via la bibliothèque non officielle `yfinance` : ils sont **indicatifs**, parfois en retard ou absents (surtout pour les fonds). Ils peuvent cesser de fonctionner si Yahoo change son service.
-- Le logiciel vérifie au démarrage s'il existe une version plus récente (lecture de la dernière release publique GitHub, aucune donnée envoyée). Désactivable dans Aide › Vérifier automatiquement au démarrage.
-- **Pas de calcul fiscal** (flat tax, abattements, PFU…). 
-- Le logiciel ne constitue **pas un conseil en investissement**.
-
-## Pour les développeurs
-
-```bash
-pip install -r requirements-dev.txt
-python -m pytest                 # tests
-python run.py                     # lancer l'application
-python tests/smoke_ui.py sortie  # captures d'écran hors écran
-lancer.bat                        # lance l'application sans compiler (Windows)
-build_windows.bat                # construit dist\SuiviBourse.exe (Windows)
-```
-
-Structure : `db.py` (SQLite), `calc.py` (PRU, valorisation, XIRR, historique), `prices.py` (Yahoo + cache), `importer.py` (CSV), `dialogs.py` / `mainwindow.py` / `widgets.py` (interface PySide6).
+Ouvre un sujet dans l'onglet **Issues** de ce dépôt (décris ce que tu faisais et le message affiché).
 
 ## Licence
 
-Freeware : gratuit pour un usage personnel, **tous droits réservés** (modification, décompilation et redistribution interdites). Voir `LICENCE`. Composants tiers : voir `NOTICES.md`.
-
-## Distribution
-
-`PUBLIER.md` : code dans un dépôt GitHub privé, `.exe` publié dans un dépôt public de téléchargement (le dossier `depot-public/` contient le README et la licence de ce dépôt public).
-`serveur/` : page de téléchargement avec clé de licence sur o2switch, pour plus tard (non utilisée pendant la bêta ; la clé est désactivée dans `suivi_bourse/licence.py`).
+Freeware : gratuit pour un usage personnel, tous droits réservés. Voir le fichier [LICENCE](LICENCE).
