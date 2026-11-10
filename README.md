@@ -1,13 +1,17 @@
-# Suivi Bourse (version bêta)
+# Suivi Bourse
 
 Logiciel **Windows gratuit** pour suivre toutes tes enveloppes d'investissement (PEA, CTO, assurance-vie, PER…) au même endroit, sans fichier Excel. **Tes données restent sur ton ordinateur.**
+
+## Mode d'emploi
+
+📖 **[Lire le mode d'emploi complet](MODE_EMPLOI.md)** (premiers pas, import CSV, cours, indicateurs, onglets…). Il est aussi dans le logiciel : menu **Aide › Mode d'emploi** (touche F1).
 
 ## Télécharger
 
 ➡️ **[Dernière version](../../releases/latest)** → section *Assets* :
 
 - **`SuiviBourse-Setup.exe`** (recommandé) : double-clique, suis l'assistant. Il propose de créer une **icône sur le Bureau** et ajoute le logiciel au menu Démarrer. Aucun droit administrateur n'est nécessaire. Pour mettre à jour, **ferme d'abord Suivi Bourse**, puis lance le nouvel installateur : tes données sont conservées.
-- **`SuiviBourse.exe`** : version portable, sans installation. Double-clique dessus pour l'utiliser (pour une icône sur le Bureau : clic droit › *Envoyer vers* › *Bureau (créer un raccourci)*).
+- **`SuiviBourse.exe`** : version sans installation. Double-clique dessus pour l'utiliser (pour une icône sur le Bureau : clic droit › *Envoyer vers* › *Bureau (créer un raccourci)*).
 
 > **Avertissement Windows** : le programme n'est pas signé numériquement. Si Windows affiche « Windows a protégé votre ordinateur », clique sur **Informations complémentaires**, puis **Exécuter quand même**.
 
@@ -32,9 +36,9 @@ Ne télécharge Suivi Bourse **que depuis ce dépôt**. Pour t'assurer que ton f
 - Import CSV de l'historique de ton courtier, export, sauvegarde.
 - Mode clair et mode sombre.
 
-## À savoir (bêta)
+## À savoir
 
-- Version de test : des erreurs sont possibles. **Fais des sauvegardes** (menu *Fichier › Sauvegarder la base*).
+- Des erreurs restent possibles. **Fais des sauvegardes** (menu *Fichier › Sauvegarder la base*).
 - Les cours viennent de Yahoo Finance et sont donnés à titre indicatif.
 - Au démarrage, le logiciel vérifie sur GitHub si une nouvelle version existe (simple lecture, aucune donnée personnelle envoyée). Désactivable dans Aide › Vérifier automatiquement au démarrage.
 - Aucun calcul fiscal. Ce logiciel ne constitue pas un conseil en investissement.
